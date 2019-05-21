@@ -117,7 +117,7 @@ def camera(device_num):
         _, frame = camera.read()
         # frame = cv2.flip(frame, 1)
         cv2.rectangle(frame, (170, 90), (470, 390), (240, 100, 0), 2)
-        roi = 1- (cv2.cvtColor(frame,cv2.COLOR_RGB2GRAY)[92:388,172:468] / 255) # Region of interest
+        roi = cv2.cvtColor(frame,cv2.COLOR_RGB2GRAY)[92:388,172:468] / 255 # Region of interest
         roi = cv2.resize(roi, img_size).reshape(-1, *img_size, 1)
         camera_prediction = model.predict([roi])[0]
 
